@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gifos</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="Icomoon/style.css">
+</head>
+
+<body>
+    <div class="blue_Line"></div>
+    <header class="header_Home">
+        <picture class="logo_Gifos"> <img src="recursos/assets/logo-mobile.svg" alt="Logo_Gifos" class="logo_Img">
+        </picture>
+        <nav class="nav">
+            <input type="checkbox" class="hamburger" id="hamid">
+            <div class="ham">
+                <label class="linea" for="hamid"></label>
+                <label class="linea" for="hamid"></label>
+                <label class="linea" for="hamid"></label>
+            </div>
+            <ul class="list">
+                <li class="li_Elem change_Mode">Modo nocturno</li>
+                <li class="line"></li>
+                <li class="li_Elem favorite_link">Favoritos</li>
+                <li class="line"></li>
+                <li class="li_Elem misGifos_Link">Mis GIFOS</li>
+                <li class="line"></li>
+                <li><button class="btn_CreateGif"> <i class="icon-button-crear-gifo img_CreateGif"></i></button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="top_Section">
+            <h1 class="title_Main">Inspírate, busca, guarda, y crea los mejores <strong>GIFOS</strong></h1>
+            <img src="recursos/assets/ilustra_header.svg" alt="Imagen_ilustración_buscador" class="img_Main">
+            <div class="input_Container">
+                <label for="text_Input" class="deep_Container">
+                    <input type="text" placeholder="Busca GIFOS y más" class="text_Input" id="text_Input">
+                    <i class="icon-icon-search icon_Search"></i>
+                    <i class="icon-close icon_Close_Search"></i>
+                    <i class="icon-icon-search icon_Active_Search"></i>
+                </label>
+                <div class="li_line"></div>
+                <ul class="list_AutoComplete">
+                </ul>
+            </div>
+
+            <h4 class="title_Trending">Treding:</h4>
+            <div class="p_Main_Container">
+
+            </div>
+        </section>
+        <section class="favorite_Section">
+            <div class="favorites_Header">
+                <i class="icon-icon-favoritos"></i>
+                <h2 class="favorites_Title">Favoritos</h2>
+            </div>
+            <div class="favorite_Gif_Container">
+            </div>
+        </section>
+        <section class="misGifos_Section">
+            <div class="misGifos_Header">
+                <i class="icon-icon-mis-gifos"></i>
+                <h2 class="misGifos_Title">Mis GIFOS</h2>
+            </div>
+            <div class="misGifos_Saved_Container">
+            </div>
+        </section>
+        <section class="misGifos_Create_Section">
+            <div class="misGifos_Create_Container">
+                <img class="topLeft-Icon" alt="diseño_recuadro" src="recursos/assets/top_Left.png">
+
+                <img class="topRight-Icon" alt="diseño_recuadro" src="recursos/assets/top_Right.png">
+
+                <img class="bottomLeft-Icon" alt="diseño_recuadro" src="recursos/assets/bottom_Left.png">
+
+                <img class="bottomRight-Icon" alt="diseño_recuadro" src="recursos/assets/bottom_Right.png">
+
+                <div class="p_Container_CreateGif">
+                    <h2 class="p_CreateGif p_1">Aquí podrás</h2>
+                    <p class="p_CreateGif p_2">crear tus propios <strong>GIFOS</strong></p>
+                    <p class="p_CreateGif p_3">¡Crea tu GIFO en sólo 3 pasos! </p>
+                    <p class="p_CreateGif p_4">(sólo necesitas una cámara para grabar un
+                        video)</p>
+                </div>
+                <div class="video_Container">
+                    <video class="video_Tag"></video>
+                </div>
+                <div class="p_Uploading_Container">
+
+                </div>
+            </div>
+            <img class="misGifos_Camera" src="recursos/assets/camara.svg" alt="Cámara">
+            <img class="misGifos_Movie" src="recursos/assets/pelicula.svg" alt="cinta">
+            <div class="step_Container">
+                <button class="step step_1">1</button>
+                <button class="step step_2">2</button>
+                <button class="step step_3">3</button>
+            </div>
+            <div class="line_misGifos"></div>
+            <div class="begin_Button">COMENZAR</div>
+            <div class="record_Button">GRABAR</div>
+            <div class="stop_Record_Button">FINALIZAR</div>
+            <div class="upload_Gifo_button">SUBIR GIFO</div>
+
+        </section>
+        <section class="search_Section">
+        </section>
+        <section class="bottom_Section">
+            <h3 class="title_Trending_Bottom">Trending GIFOS</h3>
+            <div class="p_bottomSection_Container">
+                <p class="p_bottom_Section">Mira los últimos</p>
+                <p class="p_bottom_Section">GIFOS de nuestra comunidad</p>
+            </div>
+            <div class="container_BottomSection">
+                <div class="back_Slide_Container">
+                    <button class="back_Slide"><i class="icon-button-left"></i></button>
+                </div>
+
+                <div class="trending_Container">
+
+                </div>
+
+                <div class="forward_Slide_Container">
+                    <button class="forward_Slide"><i class="icon-button-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <div class="expand_Gif_Container expand_Gif_Container--hidden">
+            <div class="expand_Content">
+                <button class="icon-button-close close_ExpandedGif"></button>
+                <p class="username_ExpandedGif"></p>
+                <p class="gif_Title_ExpandedGif"></p>
+                <img src="/" alt="gif_Expanded" class="gif_Expanded">
+                <button class="save_Favorite_ExpandedGif">
+                    <i class="icon_Fav_Expanded icon-icon-fav-hover"></i>
+                </button>
+                <a class="a_Download_ExpandedGif"></a>
+                <button class="icon-icon-download"></button>
+                <button class="icon-button-left back_Slide_ExpandedGif"></button>
+                <button class="icon-button-right forward_Slide_ExpandedGif"></button>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <p class="p_Footer">Compartir en:</p>
+        <div class="icon_Container">
+            <a href="https://www.facebook.com/" target="_blank"><i class="icon-icon_facebook"></i></a>
+            <a href="https://twitter.com/" target="_blank"><i class="icon-icon-twitter"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="icon-icon_instagram"></i></a>
+        </div>
+        <p class="p_Rights">© GIFOS 2020 All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+    <script src="javascript/js_dark_mode.js"></script>
+    <script type="module" src="javascript/js_main.js"></script>
+    <script type="module" src="javascript/js_misgifos.js"></script>
+    <script type="module" src="javascript/js_create_gifos.js"></script>
+    <script type="module" src="javascript/js_favorites.js"></script>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,251 @@
+@media only screen and (max-width: 1024px) {
+
+    .body_Dark_Mode {
+        background-color: #37383c;
+        & .blue_Line {
+            background-color: #000000;
+        }
+        header {
+            & .nav {
+                & .list {
+                    background-color: #000000;
+    
+                    & > .li_Elem {
+                        color: #ffffff;
+                    }
+                    & .line {
+                        background-color: #ffffff;
+                    }
+                }
+                & .ham {
+                    & .linea {
+                        background: #ffffff;
+                    }
+                }
+            }
+        }
+        /* Código para Main y sus derivados*/
+    
+        main {
+            /*top Section!*/
+            & .top_Section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+    
+                &--hidden {
+                    display: none;
+                }
+    
+                & .title_Main {
+                    color: #ffffff;
+                    font-size: 1.875em;
+    
+                    & > strong {
+                        color: lightgray;
+                    }
+                }
+    
+                & .input_Container {
+                    border: 1px solid #ffffff;
+    
+                    & .deep_Container {
+                        & .text_Input {
+                            background-color: #37383c;
+                            color: #ffffff;
+                        }
+                        & .icon_Search {
+                            color: #ffffff;
+                        }
+    
+                        & .icon_Close_Search {
+                            color: #ffffff;
+                        }
+    
+                        & .icon_Active_Search {
+                            color: #ffffff;
+                        }
+                    }
+                    & .list_AutoComplete {
+                        & > li {
+                            color: #ffffff;
+                        }
+    
+                        & > li:hover {
+                            color: #572ee5;
+                            cursor: pointer;
+                        }
+    
+                        & .icon_AutoComplete {
+                            color: #ffffff;
+                        }
+                    }
+                }
+    
+                & .title_Trending {
+                    color: #ffffff;
+                }
+                & .p_Main_Container {
+                    & .p_Main {
+                        color: #ffffff;
+                    }
+                }
+            }
+    
+            & .misGifos_Section {
+                & .misGifos_Header {
+                    & .misGifos_Title {
+                        color: #ffffff;
+                    }
+                }
+    
+                & .misGifos_Saved_Container {
+                    & .div_NoGifo {
+                        & .h2_NoGifo {
+                            color: #ffffff;
+                        }
+                    }
+                }
+            }
+            
+            & .favorite_Section {
+                & .favorites_Header {
+                    & .favorites_Title {
+                        color: #ffffff;
+                    }
+                }
+    
+                & .favorite_Gif_Container {
+                    & .div_NoFavorite {
+                        & .div_h2_Container_NoFavorite {
+                            & .h2_NoFavorite {
+                                color: #ffffff;
+                            }
+                        }
+                    }
+    
+                    & .moreGifs_Container_Favorite {
+                        & .btn_MoreGifs_Favorite {
+                            border: 1px solid #ffffff;
+                            color: #ffffff;
+                        }
+                    }
+                }
+            }
+    
+            /* Search Section */
+            & .search_Section {
+                & .title_Search {
+                    color: #ffffff;
+                }
+                & .div_NoSearch {
+                    & .line_NoSearch {
+                        background-color: #ffffff;
+                    }
+    
+                    & .h2_NoSearch {
+                        color: #ffffff;
+                    }
+    
+                    & .h3_NoSearch {
+                        color: #ffffff;
+                    }
+                }
+    
+                & .moreGifs_Container {
+                    & .btn_MoreGifs {
+                        border: 1px solid #ffffff;
+                        color: #ffffff;
+                    }
+                }
+            }
+    
+            /*bottom Section!*/
+            & .bottom_Section {
+                background-color: #222326;
+    
+                & .title_Trending_Bottom {
+                    color: #ffffff;
+                }
+                & .p_bottomSection_Container {
+                    & .p_bottom_Section {
+                        color: #ffffff;
+                    }
+                }
+    
+                & .container_BottomSection {
+                    & .back_Slide_Container {
+                        & .back_Slide {
+                            background-color: transparent;
+                            border: 0.5px solid #ffffff;
+                            color: #ffffff;
+                        }
+                    }
+    
+                    & .forward_Slide_Container {
+                        & .forward_Slide {
+                            background-color: transparent;
+                            border: 0.5px solid #ffffff;
+                            color: #ffffff;
+                        }
+                    }
+                }
+            }
+    
+            & .expand_Gif_Container {
+                background-color: #37383c;
+    
+                & .expand_Content {
+                    & .close_ExpandedGif {
+                        background-color: transparent;
+                        color: #ffffff;
+                    }
+    
+                    & .username_ExpandedGif {
+                        color: #ffffff;
+                    }
+    
+                    & .gif_Title_ExpandedGif {
+                        color: #ffffff;
+                    }
+    
+                    & .save_Favorite_ExpandedGif {
+                        border: 1px solid #ced7e1;
+                        background-color: transparent;
+                        & > i {
+                            color: #ffffff;
+                        }
+                    }
+    
+                    & .icon-icon-download {
+                        border: 1px solid #ffffff;
+                        color: #ffffff;
+                    }
+    
+                    & .back_Slide_ExpandedGif {
+                        border: 1px solid #ffffff;
+                        color: #ffffff;
+                    }
+    
+                    & .forward_Slide_ExpandedGif {
+                        border: 1px solid #ffffff;
+                        color: #ffffff;
+                    }
+                }
+            }
+        }
+        /*Código para el footer*/
+        .footer {
+            & .p_Footer {
+                text-align: center;
+                margin-top: 3em;
+                color: #ffffff;
+            }
+            & .p_Rights {
+                color: #ffffff;
+                margin-top: 3em;
+            }
+        }
+    }
+    
+}
