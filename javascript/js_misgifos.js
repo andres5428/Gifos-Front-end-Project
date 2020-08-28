@@ -7,6 +7,9 @@ import { download_Gif } from './js_main.js';
 import { expand_Gif } from './js_main.js';
 import { fullscreen_Favorite } from './js_main.js';
 import { check_expand_misGifos } from './js_main.js';
+import { mediaStream_Video } from './js_create_gifos.js';
+import {mediaStream_Status} from './js_create_gifos.js';
+import {chronometerTime} from './js_create_gifos.js';
 
 /**
  * Variables globales
@@ -27,7 +30,6 @@ const misGifos_Saved_Container = document.querySelector('.misGifos_Saved_Contain
 const btn_CreateGif = document.querySelector('.btn_CreateGif');
 const a_Download_ExpandedGif = document.querySelector('.a_Download_ExpandedGif');
 const begin_Button = document.querySelector('.begin_Button');
-const step_3 = document.querySelector('.step_3');
 const p_1 = document.querySelector('.p_1');
 const p_2 = document.querySelector('.p_2');
 const p_3 = document.querySelector('.p_3');
@@ -39,7 +41,13 @@ const p_Uploading_Container = document.querySelector('.p_Uploading_Container');
 const hamMenu_Input = document.querySelector('#hamid');
 const icon_Fav_Expanded = document.querySelector('.icon_Fav_Expanded');
 const bottom_Section = document.querySelector('.bottom_Section');
-
+const record_Button = document.querySelector('.record_Button');
+const stop_Record_Button = document.querySelector('.stop_Record_Button');
+const upload_Gifo_button = document.querySelector('.upload_Gifo_button');
+const step_1 = document.querySelector('.step_1');
+const step_2 = document.querySelector('.step_2');
+const step_3 = document.querySelector('.step_3');
+const repeat_Container = document.querySelector('.repeat_Container');
 
 
 /**
@@ -125,6 +133,39 @@ const change_misGifos_Page = () => {
     while (p_Uploading_Container.firstChild) {
         p_Uploading_Container.removeChild(p_Uploading_Container.firstChild)
     }
+
+    if (record_Button.className === 'record_Button record_Button--show') {
+        record_Button.classList.toggle('record_Button--show');
+    }
+
+    if (upload_Gifo_button.className === 'upload_Gifo_button upload_Gifo_button--show') {
+        upload_Gifo_button.classList.toggle('upload_Gifo_button--show');
+    }
+
+    if (stop_Record_Button.className === 'stop_Record_Button stop_Record_Button--show') {
+        stop_Record_Button.classList.toggle('stop_Record_Button--show');
+    }
+
+    if (step_1.className === 'step step_1 step--filled')
+        step_1.classList.toggle('step--filled');
+
+    if (step_2.className === 'step step_2 step--filled')
+        step_2.classList.toggle('step--filled');
+
+    if (step_3.className === 'step step_1 step--filled')
+        step_3.classList.toggle('step--filled');
+
+    if (repeat_Container.className === 'repeat_Container repeat_Container--show') {
+        repeat_Container.classList.toggle('repeat_Container--show');
+    }
+
+    if (chronometerTime.className === 'chronometerTime chronometerTime--show'){
+        chronometerTime.classList.toggle('chronometerTime--show');
+    }
+
+    if (mediaStream_Status === true){
+        mediaStream_Video.stop();
+    }
 }
 
 /**
@@ -149,7 +190,7 @@ misGifos_Link.addEventListener('click', () => {
 
 const get_Storage_MisGifos = () => {
     while (misGifos_Saved_Container.firstChild) misGifos_Saved_Container.removeChild(misGifos_Saved_Container.firstChild);
-    const MisGifos_Storage = JSON.parse(localStorage.getItem('Mis_GIFOS'));
+    const MisGifos_Storage = JSON.parse(localStorage.getItem('Mis_GIFOS')) || [];
     console.log(MisGifos_Storage)
     let array_MisGifos = [];
     MisGifos_Storage.forEach((miGifo) => {

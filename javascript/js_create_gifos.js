@@ -9,7 +9,10 @@ import { API_KEY } from './js_main.js';
  * Global variables
  */
 const Gif_Username = 'ACJA';
-const STORAGE_GIF = 'Mis_GIFOS'
+const STORAGE_GIF = 'Mis_GIFOS';
+export let mediaStream_Status;
+let start_Date_Chrono;
+let chrono;
 
 /**
  * DOM Global variables
@@ -38,6 +41,8 @@ const misGifos_Create_Container = document.querySelector('.misGifos_Create_Conta
 const home_Link = document.querySelector('.logo_Gifos');
 const p_Uploading_Container = document.querySelector('.p_Uploading_Container');
 const img_CreateGif = document.querySelector('.img_CreateGif');
+const repeat_Container = document.querySelector('.repeat_Container');
+export const chronometerTime = document.querySelector('.chronometerTime');
 
 
 /**
@@ -67,8 +72,6 @@ const change_MisGifos_CreatePage = () => {
 
     }
 
-
-    // get_Storage_Favorites();
 }
 
 /**
@@ -91,11 +94,18 @@ btn_CreateGif.addEventListener('click', () => {
     if (btn_CreateGif.className === 'btn_CreateGif btn_CreateGif--active') {
 
         btn_CreateGif.classList.toggle('btn_CreateGif--active');
-        
+
         if (img_CreateGif.className === 'icon-button-crear-gifo img_CreateGif img_CreateGif--active') {
             img_CreateGif.classList.toggle('img_CreateGif--active');
         }
 
+        if (btn_CreateGif.className === 'btn_CreateGif btn_CreateGif--active') {
+            btn_CreateGif.classList.toggle('btn_CreateGif--active');
+        }
+        if (img_CreateGif.className === 'icon-button-crear-gifo img_CreateGif img_CreateGif--active') {
+            img_CreateGif.classList.toggle('img_CreateGif--active');
+        }
+    
         if (p_1.className === 'p_CreateGif p_1 p_1--hidden') {
             p_1.textContent = 'Aquí podrás';
             p_1.classList.toggle('p_1--hidden');
@@ -112,18 +122,44 @@ btn_CreateGif.addEventListener('click', () => {
             p_4.textContent = '(sólo necesitas una cámara para grabar un video)';
             p_4.classList.toggle('p_4--hidden');
         }
-
+    
         if (video_Container.className === 'video_Container video_Container--show') {
             video_Container.classList.toggle('video_Container--show');
         }
-
+    
         if (step_3.className === 'step step_3 step--filled') {
             step_3.classList.toggle('step--filled');
         }
         if (begin_Button.className === 'begin_Button begin_Button--hidden') {
             begin_Button.classList.toggle('begin_Button--hidden');
         }
-
+    
+        if (record_Button.className === 'record_Button record_Button--show') {
+            record_Button.classList.toggle('record_Button--show');
+        }
+    
+        if (upload_Gifo_button.className === 'upload_Gifo_button upload_Gifo_button--show') {
+            upload_Gifo_button.classList.toggle('upload_Gifo_button--show');
+        }
+    
+        if (stop_Record_Button.className === 'stop_Record_Button stop_Record_Button--show') {
+            stop_Record_Button.classList.toggle('stop_Record_Button--show');
+        }
+    
+        if (step_1.className === 'step step_1 step--filled')
+            step_1.classList.toggle('step--filled');
+    
+        if (step_2.className === 'step step_2 step--filled')
+            step_2.classList.toggle('step--filled');
+    
+        if (step_3.className === 'step step_1 step--filled')
+            step_3.classList.toggle('step--filled');
+            
+        if (mediaStream_Status === true){
+            mediaStream_Video.stop();
+        }
+       
+    
         if (p_1.className === 'p_1 p_1--hidden') {
             p_1.classList.toggle('p_1--hidden');
         }
@@ -136,10 +172,19 @@ btn_CreateGif.addEventListener('click', () => {
         if (p_4.className === 'p_4 p_4--hidden') {
             p_4.classList.toggle('p_4--hidden');
         }
-
+    
+        if (repeat_Container.className === 'repeat_Container repeat_Container--show') {
+            repeat_Container.classList.toggle('repeat_Container--show');
+        }
+    
         if (video_Tag.className === 'video_Tag video_Tag--uploading') {
             video_Tag.classList.toggle('video_Tag--uploading');
         }
+
+        if (chronometerTime.className === 'chronometerTime chronometerTime--show'){
+            chronometerTime.classList.toggle('chronometerTime--show');
+        }
+
         while (p_Uploading_Container.firstChild) {
             p_Uploading_Container.removeChild(p_Uploading_Container.firstChild)
         }
@@ -170,7 +215,8 @@ const constraints_Active = {
 }
 
 
-let mediaStream_Video = {};
+export let mediaStream_Video = {};
+let form_Data= '';
 
 /**
  * @method camera_Permission
@@ -192,6 +238,7 @@ const camera_Permission = () => {
         step_1.classList.toggle('step--filled');
         step_2.classList.toggle('step--filled');
         record_Button.classList.toggle('record_Button--show');
+        mediaStream_Status = true;
         recorder =
             RecordRTC(mediaStream_Video, {
                 type: 'gif',
@@ -205,7 +252,7 @@ const camera_Permission = () => {
             });
     }).catch((error) => {
         console.log(error);
-        alert('No aceptaste los permisos o tienes problemas con tu cámara')
+        alert('No aceptaste los permisos o tienes problemas con tu cámara');
         if (favorite_Section.className === 'favorite_Section favorite_Section--show') {
             favorite_Section.classList.toggle('favorite_Section--show');
         }
@@ -228,8 +275,6 @@ const camera_Permission = () => {
         }
     })
 
-
-
 }
 /**
  * añadir el evento de click al botón de "comenzar" el proceso de grabación
@@ -242,7 +287,6 @@ begin_Button.addEventListener('click', () => {
 
 let recorder = {};
 let array_Gif_Data = [];
-let form_Data = '';
 let form = new FormData();
 
 /**
@@ -250,39 +294,42 @@ let form = new FormData();
  */
 
 record_Button.addEventListener('click', () => {
+    chronometerTime.innerHTML= '00:00';
     recorder.startRecording();
     record_Button.classList.toggle('record_Button--show');
     stop_Record_Button.classList.toggle('stop_Record_Button--show');
+    chronometer_Init();
+    chronometerTime.classList.toggle('chronometerTime--show');
 });
 
 /**
  * añadir el evento de click al botón de detener la grabación través de la librería recordRTC
  */
 stop_Record_Button.addEventListener('click', () => {
-    video_Tag.pause();
+    chronometer_Stop();
+    mediaStream_Status = false;
     recorder.stopRecording(function () {
         let blob = recorder.getBlob();
         const ObjectUrl = window.URL.createObjectURL(blob);
         form.append('file', blob, 'myGif.gif');
         form_Data = form.get('file');
-
-    })
+    });
     upload_Gifo_button.classList.toggle('upload_Gifo_button--show');
     stop_Record_Button.classList.toggle('stop_Record_Button--show');
-
-    mediaStream_Video.getTracks().forEach(function (track) {
-        track.stop();
-    });
-
-
-})
+    repeat_Container.classList.toggle('repeat_Container--show');
+    chronometerTime.classList.toggle('chronometerTime--show');
+    video_Tag.pause();
+    mediaStream_Video.stop();
+});
 
 /**
  * Añadir el evento de click al botón de subi el gif a la API de Giphy
  */
+
 upload_Gifo_button.addEventListener('click', () => {
     step_2.classList.toggle('step--filled');
     step_3.classList.toggle('step--filled');
+    repeat_Container.classList.toggle('repeat_Container--show');
     upload_Gifo_button.classList.toggle('upload_Gifo_button--show');
     const img_Loading = document.createElement('img');
     img_Loading.classList.add('img_Loading');
@@ -329,6 +376,94 @@ const save_Created_Gif = () => {
     localStorage.setItem(STORAGE_GIF, JSON.stringify(array_Gif_Data));
 }
 
+
+/**
+ * @method chronometer_Init
+ * @description Start recording timer
+ */
+function chronometer_Init() {
+    start_Date_Chrono = new Date().getTime();
+    chrono = setInterval(refresh_Time_Chronometer, 1000);
+}
+
+/**
+ * @method refresh_Time_Chronometer
+ * @description Calculate redording time and show it in UI
+ */
+function refresh_Time_Chronometer() {
+    const elapsedTimeInMilliseconds = new Date().getTime() - start_Date_Chrono;
+    const elapsedTime = calculate_Duration(elapsedTimeInMilliseconds / 1000);
+    chronometerTime.textContent = elapsedTime;
+}
+
+/**
+ * @method chronometer_Stop
+ * @description Stop recording timer
+ */
+function chronometer_Stop() {
+    start_Date_Chrono = null;
+    chronometerTime.innerHTML = '00:00';
+    clearInterval(chrono);
+}
+
+function calculate_Duration(secs) {
+    let hr = Math.floor(secs / 3600);
+    let min = Math.floor((secs - (hr * 3600)) / 60);
+    let sec = Math.floor(secs - (hr * 3600) - (min * 60));
+
+    if (min < 10) {
+        min = "0" + min;
+    }
+
+    if (sec < 10) {
+        sec = "0" + sec;
+    }
+
+    if (hr <= 0) {
+        return min + ':' + sec;
+    }
+
+    return hr + ':' + min + ':' + sec;
+}
+
+/**
+ * @method
+ * @description
+ */
+
+repeat_Container.addEventListener('click', ()=>{
+    record_Button.classList.toggle('record_Button--show');
+    repeat_Container.classList.toggle('repeat_Container--show');
+    upload_Gifo_button.classList.toggle('upload_Gifo_button--show');
+    Repeat_Capture(constraints_Active);
+})
+
+const Repeat_Capture = () => {
+
+    navigator.mediaDevices.getUserMedia(constraints_Active).then((MediaStream) => {
+        form.delete('file');
+        mediaStream_Status = true;
+        mediaStream_Video = MediaStream;
+        video_Tag.srcObject = MediaStream;
+        video_Tag.play();
+        recorder =
+            RecordRTC(mediaStream_Video, {
+                type: 'gif',
+                frameRate: 1,
+                quality: 10,
+                width: 360,
+                hidden: 240,
+                onGifRecordingStarted: function () {
+                    console.log('started');
+                },
+            });
+    }).catch((error) => {
+        console.log(error);
+    })
+}
+
+
+
 /**
  * @method change_HomePage
  * @description Cambiar a la section principal y reestablecer todas las funciones de la sección de creación
@@ -371,6 +506,32 @@ const change_HomePage = () => {
         begin_Button.classList.toggle('begin_Button--hidden');
     }
 
+    if (record_Button.className === 'record_Button record_Button--show') {
+        record_Button.classList.toggle('record_Button--show');
+    }
+
+    if (upload_Gifo_button.className === 'upload_Gifo_button upload_Gifo_button--show') {
+        upload_Gifo_button.classList.toggle('upload_Gifo_button--show');
+    }
+
+    if (stop_Record_Button.className === 'stop_Record_Button stop_Record_Button--show') {
+        stop_Record_Button.classList.toggle('stop_Record_Button--show');
+    }
+
+    if (step_1.className === 'step step_1 step--filled')
+        step_1.classList.toggle('step--filled');
+
+    if (step_2.className === 'step step_2 step--filled')
+        step_2.classList.toggle('step--filled');
+
+    if (step_3.className === 'step step_1 step--filled')
+        step_3.classList.toggle('step--filled');
+
+    if (mediaStream_Status === true){
+        mediaStream_Video.stop();
+    }
+   
+
     if (p_1.className === 'p_1 p_1--hidden') {
         p_1.classList.toggle('p_1--hidden');
     }
@@ -384,14 +545,25 @@ const change_HomePage = () => {
         p_4.classList.toggle('p_4--hidden');
     }
 
+    if (repeat_Container.className === 'repeat_Container repeat_Container--show') {
+        repeat_Container.classList.toggle('repeat_Container--show');
+    }
+
     if (video_Tag.className === 'video_Tag video_Tag--uploading') {
         video_Tag.classList.toggle('video_Tag--uploading');
     }
+   
+    if (chronometerTime.className === 'chronometerTime chronometerTime--show'){
+        chronometerTime.classList.toggle('chronometerTime--show');
+    }
+
     while (p_Uploading_Container.firstChild) {
         p_Uploading_Container.removeChild(p_Uploading_Container.firstChild)
     }
+
+
 }
 /**
  * Añadir el evento de click al logo de Gifos para cambiar a la sección principal
  */
-home_Link.addEventListener('click', change_HomePage)
+home_Link.addEventListener('click', change_HomePage);

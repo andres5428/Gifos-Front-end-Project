@@ -2165,6 +2165,41 @@ main .expand_Gif_Container .expand_Content .forward_Slide_ExpandedGif {
     background-color: #572ee5;
     color: #ffffff;
   }
+  body main .misGifos_Create_Section .repeat_Container {
+    display: none;
+    margin: 0;
+  }
+  body main .misGifos_Create_Section .repeat_Container .repeat_P {
+    font-family: "Proximanova-bold";
+    color: #572ee5;
+    border-bottom: 2px solid #5ed7c6;
+    margin: 0;
+  }
+  body main .misGifos_Create_Section .repeat_Container--show {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0;
+    position: absolute;
+    right: 18.5%;
+    bottom: 20%;
+    cursor: pointer;
+  }
+  body main .misGifos_Create_Section .chronometerTime {
+    display: none;
+    font-family: "Proximanova-bold";
+    color: #572ee5;
+    font-size: 0.9375em;
+  }
+  body main .misGifos_Create_Section .chronometerTime--show {
+    display: block;
+    font-family: "Proximanova-bold";
+    color: #572ee5;
+    font-size: 0.9375em;
+    position: absolute;
+    right: 18.5%;
+    bottom: 20%;
+  }
   body main .misGifos_Create_Section .line_misGifos {
     width: 49.74em;
     height: 0.43125em;
